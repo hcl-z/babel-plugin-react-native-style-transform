@@ -1,17 +1,49 @@
 /* eslint-disable @babel/development/plugin-name */
 
 import pluginTester from "babel-plugin-tester";
-import plugin from "../index";
+import plugin from "../dist/index";
 
 pluginTester({
   plugin,
   pluginName: "babel-plugin-react-native-classname-to-style",
+  pluginOptions: {
+    combineSymbol: "$",
+    keepClassName: false,
+    transformCombineExpression: true
+  },
   snapshot: true,
   babelOptions: {
     babelrc: true,
     filename: __filename
   },
   tests: [
+    {
+      title: "Should transform combine expression to styles object with combineSymbol",
+      code: `const Foo = () => <div className={$$(styles.foo,styles.bar)}>Foo</div>`,
+      pluginOptions: {
+        combineSymbol: '$$'
+      }
+    },
+    {
+      title: "Should not transform combine expression to styles object without combineSymbol",
+      code: `const Foo = () => <div className={$(styles.foo,styles.bar)}>Foo</div>`,
+      pluginOptions: {
+        combineSymbol: '$$',
+        transformCombineExpression: false
+      }
+    },
+    {
+      title: "Should transform single combine expression to styles object",
+      code: `const Foo = () => <div className={$(styles.foo)}>Foo</div>`
+    },
+    {
+      title: "Should transform multiple combine expression to styles object",
+      code: `const Foo = () => <div className={$(styles.foo,styles.bar,styles.baz)}>Foo</div>`
+    },
+    {
+      title: "Should transform combine expression with condition expression to styles object",
+      code: `const Foo = () => <div className={$(styles.foo,styles.bar,isTrue?styles.baz:styles.qux)}>Foo</div>`
+    },
     {
       title: "Should transform single classname to styles object",
       code: `const Foo = () => <div className={styles.foo}>Foo</div>`
@@ -211,11 +243,17 @@ pluginTester({
     },
     {
       title: "Should preserve className string",
-      code: `const Foo = () => <div className="should-not-change">Foo</div>`
+      code: `const Foo = () => <div className="should-not-change">Foo</div>`,
+      pluginOptions: {
+        keepClassName: true
+      }
     },
     {
       title: "Should preserve className string and style object",
-      code: `const Foo = () => <div className="should-not-change" style={{ color: "#f00" }}>Foo</div>`
+      code: `const Foo = () => <div className="should-not-change" style={{ color: "#f00" }}>Foo</div>`,
+      pluginOptions: {
+        keepClassName: true
+      }
     },
     {
       title: "Should not touch style object",
@@ -243,17 +281,26 @@ pluginTester({
     },
     {
       title: "Should not touch className string and empty style definition",
-      code: `const Foo = () => <div className="should-not-change" style={{}}>Foo</div>`
+      code: `const Foo = () => <div className="should-not-change" style={{}}>Foo</div>`,
+      pluginOptions: {
+        keepClassName: true
+      }
     },
     {
       title: "Should not touch className template string",
-      code: "const Foo = () => <div className={`should-not-change`}>Foo</div>"
+      code: "const Foo = () => <div className={`should-not-change`}>Foo</div>",
+      pluginOptions: {
+        keepClassName: true
+      }
     },
     {
       title:
         "Should not touch className template string and empty style definition",
       code:
-        "const Foo = () => <div className={`should-not-change`} style={{}}>Foo</div>"
+        "const Foo = () => <div className={`should-not-change`} style={{}}>Foo</div>",
+      pluginOptions: {
+        keepClassName: true
+      }
     },
     {
       title: "Should support single classname by joining an array",

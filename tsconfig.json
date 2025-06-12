@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "lib": ["es5", "es2015", "dom"],
+    "jsx": "react",
+    "outDir": "./dist"
+  },
+  "include": ["index.ts"]
+}
