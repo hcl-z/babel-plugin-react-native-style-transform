@@ -8,10 +8,6 @@ interface PluginOptions {
 }
 
 export default (): PluginObj => {
-  var css = null;
-  var style = null;
-  var templateLiteral = null;
-
   let classNameList = [];
 
   function transformClassName(node: t.JSXExpressionContainer, transformCombineExpression: boolean, combineSymbol: string) {
@@ -78,7 +74,6 @@ export default (): PluginObj => {
       JSXOpeningElement: {
         exit(path, state) {
           const flatClassNameList = classNameList.flat()
-          console.log('111', flatClassNameList)
           if (flatClassNameList.length === 0) {
             return
           }
