@@ -1,4 +1,4 @@
-# babel-plugin-react-native-classname-to-style
+# babel-plugin-react-native-style-transform
 
 Transform JSX `className` property to `style` property in react-native.
 
@@ -7,13 +7,13 @@ Transform JSX `className` property to `style` property in react-native.
 ### Step 1: Install
 
 ```sh
-yarn add --dev babel-plugin-react-native-classname-to-style
+yarn add --dev babel-plugin-react-native-style-transform
 ```
 
 or
 
 ```sh
-npm install --save-dev babel-plugin-react-native-classname-to-style
+npm install --save-dev babel-plugin-react-native-style-transform
 ```
 
 ### Step 2: Configure `.babelrc`
@@ -24,7 +24,7 @@ npm install --save-dev babel-plugin-react-native-classname-to-style
     "react-native"
   ],
   "plugins": [
-    ["react-native-classname-to-style",{
+    ["react-native-style-transform",{
       combineSymbol: "$"
       keepClassName:true
       transformCombineExpression:true
