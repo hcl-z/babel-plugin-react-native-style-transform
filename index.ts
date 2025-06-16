@@ -84,6 +84,7 @@ export default (): PluginObj => {
             const newStyle = t.arrayExpression(flatClassNameList)
             path.node.attributes.push(t.jsxAttribute(t.jsxIdentifier("style"), t.jsxExpressionContainer(newStyle)))
           }
+          classNameList = []
         }
       },
 
