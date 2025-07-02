@@ -64,7 +64,7 @@ export default (): PluginObj => {
       t.isJSXExpressionContainer(node) &&
       expression.callee &&
       t.isIdentifier(expression.callee) &&
-      expression.callee.name.toLowerCase() === symbol
+      expression.callee.name === symbol
     );
   }
 

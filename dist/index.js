@@ -54,7 +54,7 @@ exports.default = (function () {
             t.isJSXExpressionContainer(node) &&
             expression.callee &&
             t.isIdentifier(expression.callee) &&
-            expression.callee.name.toLowerCase() === symbol);
+            expression.callee.name === symbol);
     }
     return {
         name: "react-native-classname-to-style",

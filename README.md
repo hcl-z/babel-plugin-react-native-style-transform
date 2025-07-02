@@ -157,5 +157,5 @@ Example:
 ↓ ↓ ↓ ↓ ↓ ↓
 
 ```jsx
-<Text style={[styles.class1 : styles.class2]} />
+<Text style={[styles.class1,styles.class2]} />
 ```

@@ -115,11 +115,9 @@ const Foo = () => <div style={{ height: \\"100%\\" }}><div style={{ color: \\"#f
 var Foo = function Foo() {
   return <div style={{
     height: \\"100%\\"
-  }}><div style={[{
-      height: \\"100%\\"
-    }, {
+  }}><div style={{
       color: \\"#f00\\"
-    }]}>Foo</div></div>;
+    }}>Foo</div></div>;
 };
 "
 `;
@@ -380,9 +378,7 @@ const Foo = () => <div style={{ width: \\"100%\\" }}><div className={styles.shou
 var Foo = function Foo() {
   return <div style={{
     width: \\"100%\\"
-  }}><div style={[{
-      width: \\"100%\\"
-    }, styles.shouldMergeWithStyles, {
+  }}><div style={[styles.shouldMergeWithStyles, {
       color: \\"#f00\\"
     }]}>Foo</div></div>;
 };
@@ -415,8 +411,6 @@ var Foo = function Foo() {
   return <div><div style={[styles.shouldMergeWithStyles, {
       color: \\"#f00\\"
     }]}>Foo</div><div style={[styles.shouldMergeWithStyles, {
-      color: \\"#f00\\"
-    }, styles.shouldMergeWithStyles, {
       color: \\"#0f0\\"
     }]}>Bar</div></div>;
 };
@@ -450,9 +444,7 @@ const Foo = () => <div style={{ width: \\"100%\\" }}><div className={styles.imWi
 var Foo = function Foo() {
   return <div style={{
     width: \\"100%\\"
-  }}><div style={[{
-      width: \\"100%\\"
-    }, styles.imWithFoo, {
+  }}><div style={[styles.imWithFoo, {
       color: \\"black\\"
     }]}>Foo</div></div>;
 };
@@ -498,7 +490,7 @@ const Foo = () => <div><div className={[styles.style1, styles.style2].join(' ')}
 \\"use strict\\";
 
 var Foo = function Foo() {
-  return <div><div style={[styles.style1, styles.style2]}>Foo</div><div style={[styles.style1, styles.style2, styles.style3, styles.style4]}>Bar</div></div>;
+  return <div><div style={[styles.style1, styles.style2]}>Foo</div><div style={[styles.style3, styles.style4]}>Bar</div></div>;
 };
 "
 `;
@@ -583,9 +575,7 @@ const Foo = () => <div><div className={\`\${styles.foo} \${styles.bar} \${styles
 var Foo = function Foo() {
   return <div><div style={[styles.foo, styles.bar, styles.baz, {
       color: 'blue'
-    }]}>Foo</div><div style={[styles.foo, styles.bar, styles.baz, {
-      color: 'blue'
-    }, styles.style1, styles.style2, styles.style3, {
+    }]}>Foo</div><div style={[styles.style1, styles.style2, styles.style3, {
       color: 'red'
     }]}>Bar</div></div>;
 };
@@ -601,7 +591,7 @@ const Foo = () => <div><div className={\`\${styles.foo} \${styles.bar} \${styles
 \\"use strict\\";
 
 var Foo = function Foo() {
-  return <div><div style={[styles.foo, styles.bar, styles.baz]}>Foo</div><div style={[styles.foo, styles.bar, styles.baz, styles.style1, styles.style2]}>Bar</div></div>;
+  return <div><div style={[styles.foo, styles.bar, styles.baz]}>Foo</div><div style={[styles.style1, styles.style2]}>Bar</div></div>;
 };
 "
 `;
@@ -1059,17 +1049,9 @@ const Foo = () => <div style={{ width: '100%' }}><div className={\`\${styles.foo
 var Foo = function Foo() {
   return <div style={{
     width: '100%'
-  }}><div style={[{
-      width: '100%'
-    }, styles.foo1, styles.bar1]}><div style={[{
-        width: '100%'
-      }, styles.foo1, styles.bar1, styles.foo2, styles.bar2, {
+  }}><div style={[styles.foo1, styles.bar1]}><div style={[styles.foo2, styles.bar2, {
         color: 'red'
-      }]}><div style={[{
-          width: '100%'
-        }, styles.foo1, styles.bar1, styles.foo2, styles.bar2, {
-          color: 'red'
-        }, styles.foo3, styles.bar3]}>Bar</div></div></div></div>;
+      }]}><div style={[styles.foo3, styles.bar3]}>Bar</div></div></div></div>;
 };
 "
 `;
@@ -1099,9 +1081,7 @@ const Foo = () => <div style={{ width: \\"100%\\" }}><div className={styles.imWi
 var Foo = function Foo() {
   return <div style={{
     width: \\"100%\\"
-  }}><div style={[{
-      width: \\"100%\\"
-    }, styles.imWithFoo]}>Foo</div></div>;
+  }}><div style={styles.imWithFoo}>Foo</div></div>;
 };
 "
 `;
@@ -1115,7 +1095,7 @@ const Foo = () => <div><div className={styles.foo}>Foo</div><div className={styl
 \\"use strict\\";
 
 var Foo = function Foo() {
-  return <div><div style={styles.foo}>Foo</div><div style={[styles.foo, styles.bar]}>Bar</div></div>;
+  return <div><div style={styles.foo}>Foo</div><div style={styles.bar}>Bar</div></div>;
 };
 "
 `;
@@ -1131,17 +1111,9 @@ const Foo = () => <div style={{ width: \\"100%\\" }}><div className={styles.styl
 var Foo = function Foo() {
   return <div style={{
     width: \\"100%\\"
-  }}><div style={[{
-      width: \\"100%\\"
-    }, styles.style1]}><div style={[{
-        width: \\"100%\\"
-      }, styles.style1, styles.style2, {
+  }}><div style={styles.style1}><div style={[styles.style2, {
         color: \\"red\\"
-      }]}><div style={[{
-          width: \\"100%\\"
-        }, styles.style1, styles.style2, {
-          color: \\"red\\"
-        }, styles.style3]}>Bar</div></div></div></div>;
+      }]}><div style={styles.style3}>Bar</div></div></div></div>;
 };
 "
 `;
