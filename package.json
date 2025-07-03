@@ -1,5 +1,5 @@
 {
-  "name": "@ctrip/babel-plugin-react-native-style-transform",
+  "name": "babel-plugin-react-native-style-transform",
   "version": "1.0.6",
   "description": "Transform JSX className property to style property in react-native.",
   "keywords": [
